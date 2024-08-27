@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    read -p "Dati numele fisierului sursa .c : " sursa
+else
+    sursa=$1
+fi
+
+while true; do
+    mcedit "$sursa"  # Se va înlocui comanda mcedit cu numele editorului preferat
+
+    read -p "Doriti compilarea programului? (y/n) " answer
+    if [ "$answer" = "y" ]; then
+        executabil="${sursa%.c}"  # Construim noul nume pentru executabil, cu tot cu calea până la el!
+
+        gcc "$sursa" -o "$executabil" -Wall  # Compilarea fișierului sursă
+        if [ $? -eq 0 ]; then
+            read -p "Doriti executarea programului? (y/n) " answer
+            if [ "$answer" = "y" ]; then
+                ./"$executabil"  # Aici puteți customiza linia de apel a executabilului
+            fi
+            break
+        else
+            read -p "Apasa <Enter> pentru a continua cu editarea erorilor..." answer
+            continue
+        fi
+    else
+        break
+    fi
+done
+
+# Așteaptă ca utilizatorul să apese o tastă înainte de a închide consola
+read -n 1 -s -r -p "Apasati orice tasta pentru a inchide..." 
+

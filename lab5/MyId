@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $# -eq 0 ] 
+then
+echo "Eroare: parametri insuficienti "
+exit 1
+else
+u=":$1:"
+fi
+
+linie=$(grep $u /etc/passwd)
+if [ ! $? -eq 0 ] 
+then
+echo "Eroare: nu exista utilizator"
+else
+nume_real=$(echo $linie | cut -d: -f5 | cut -d, -f1)
+if [ -n "$nume_real" ]
+then
+echo "Numele real: $nume_real"
+else 
+echo "Nu exista info"
+ 
+fi
+fi
+

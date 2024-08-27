@@ -1,0 +1,18 @@
+#include <stdlib.h>
+#include <dirent.h>
+
+int main(int argc, char *argv[])
+{
+
+DIR *dir=opendir("~");
+struct dirent * file;
+file=readdir(dir);
+while(file!=NULL)
+{
+printf("%s\n", file->d_name);
+file=readdir(dir);
+}
+
+return 0;
+}
+

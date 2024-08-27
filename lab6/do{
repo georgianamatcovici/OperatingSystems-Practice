@@ -1,0 +1,13 @@
+        cod_r = read(fd, &ch, 1);
+
+        if(cod_r == -1)
+        {
+            perror("Eroare la citire");
+            exit(3);
+        }
+        if(cod_r == 0)  // EOF (i.e., am ajuns la sfârșitul fișierului)
+            break;
+
+        vector_ap[ch]++;
+    }
+    while(1);
