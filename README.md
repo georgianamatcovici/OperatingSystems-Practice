@@ -1,0 +1,1 @@
+This repository contains C programs and Bash scripts developed to solve various lab problems in the Operating Systems course during my second semester at university. The exercises cover key concepts of operating systems, including process management, inter-process communication, and memory management.
